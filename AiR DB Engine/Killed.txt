@@ -1,0 +1,43 @@
+// LIST_INSERT ----         R E I M P L E M E N T E D !!!
+
+if (!List->front)
+	{
+		List->front = List->end = (node*)malloc(sizeof(node));
+		List->front->data = data;
+		List->front->prev = NULL;
+		List->front->next = NULL;
+
+		return List->front;
+	}
+	else
+	{
+		node* t = List->front;
+		if (pos < 0) pos = (unsigned short int) -1;
+		else if (pos == 0)
+		{
+			List->front->prev = (node*)malloc(sizeof(node));
+			List->front->prev->next = List->front;
+			mov_prev(List->front);
+
+			return List->front;
+		}
+
+		while (--pos && (t->next))
+			mov_next(t);
+
+		if (!pos)
+		{
+			t->prev->next = (node*)malloc(sizeof(node));
+			t->prev->next->data = data;
+			t->prev->next->prev = t->prev;
+			t->prev->next->next = t;
+		}
+		else
+		{
+			t->next = (node*)malloc(sizeof(node));
+			t->next->data = data;
+			t->next->prev = t;
+			t->next->next = NULL;
+			List->end = t->next;
+		}
+	}

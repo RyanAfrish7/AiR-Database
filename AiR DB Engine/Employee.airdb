@@ -1,0 +1,60 @@
+!AiRscript v0.1
+
+menuentry "insert"
+SCRIPT{
+PUT "enter the details here:";
+GET P1_var "emp id:";
+GET P2_var "emp name:";
+GET P3_var "company name:";
+GET P4_var int "salary:";
+EXEC SQL;
+PUT "EMPLOYEE DETAILS.";
+}
+SQL{
+INSERT (P1_var,P2_var,P3_var,P4_var);
+}
+
+menuentry "remove"
+SCRIPT{
+GET P2_var "entr the name to be deleted:";
+EXEC SQL;
+PUT "DELETED SUCCESSFULLY.";
+}
+SQL{
+DELETE (empname=P2_var);
+}
+
+menuentry "showall"
+SCRIPT{
+PUT "RESULT:";
+EXEC SQL;
+}
+SQL{
+DISPLAY
+}
+
+menuentry "logout and terminate"
+SCRIPT{
+put "log out successfuly:";
+put "terminated:";
+EXIT;
+}
+SQL{
+}
+
+menuentry "show the details"
+SCRIPT{
+MENU
+}
+SQL{
+}
+
+login (mani,kingmaker) (ak,ak)
+SQL{
+CREATE TABLE emp (empid INT,empname CHAR 32,companyname CHAR 40,salary INT);
+}
+SCRIPT{
+PUT "login successfully.";
+EXEC SQL;
+MENU
+}

@@ -1,0 +1,60 @@
+!AiRscript v0.1
+
+menuentry "Insert"
+SCRIPT{
+PUT "Enter the following details : ";
+GET p1_var "Register Number : ";
+GET p2_var "Student Name : ";
+GET p3_var "Semester : ";
+GET p4_var "CGPA : ";
+EXEC SQL;
+PUT "Successfully added.";
+}
+SQL{
+INSERT (p1_var,p2_var,p3_var,p4_var);
+}
+
+menuentry "Remove"
+SCRIPT{
+GET p1_var "Enter Register Number to be removed : ";
+EXEC SQL;
+PUT "Query executed";
+}
+SQL{
+DELETE (RegNo=p1_var);
+}
+
+menuentry "Show all"
+SCRIPT{
+PUT "Result : ";
+EXEC SQL;
+}
+SQL{
+DISPLAY
+}
+
+menuentry "Log out and Terminate"
+SCRIPT{
+PUT "Logged out successfully";
+PUT "Terminating";
+EXIT;
+}
+SQL{
+}
+
+menuentry "Show this menu"
+SCRIPT{
+MENU
+}
+SQL{
+}
+
+login (afrish,12345) (khan,12345) (ak,ak)
+SQL{
+CREATE TABLE Student (RegNo INT,Name CHAR 32,Semester INT,CGPA INT);
+}
+SCRIPT{
+PUT "Logged in successfully";
+EXEC SQL;
+MENU
+}
